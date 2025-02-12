@@ -1,4 +1,4 @@
-include themes/edge-dark
+include themes/gruvbox-material-dark
 
 map j feedkeys 5<Down>
 map k feedkeys 5<Up>

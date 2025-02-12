@@ -147,7 +147,7 @@ _vim() {
 
 _zsh() {
     _symlink .zshrc
-    cp "$DOTFILES_DIR/.zsh-theme/edge-dark.zsh" ~/.zsh-theme
+    cp "$DOTFILES_DIR/.zsh-theme/gruvbox-material-dark.zsh" ~/.zsh-theme
 }
 
 _tmux() {

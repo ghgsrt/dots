@@ -8,14 +8,11 @@ url='https://www.sainnhe.dev/'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
 depends=(fontconfig
-         ttf-lxgw-wenkai
-         ttf-lxgw-wenkai-mono
          noto-fonts
          noto-fonts-cjk
          noto-fonts-emoji
          noto-fonts-extra
-         ttf-ms-win11-auto
-         ttf-ms-win11-auto-zh_cn)
+         ttf-ms-win11-auto)
 
 pkgver() {
     date --utc +"%Y.%m.%d"

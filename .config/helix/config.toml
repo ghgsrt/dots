@@ -1,4 +1,4 @@
-theme = "everforest_dark"
+theme = "gruvbox_material_dark"
 
 [editor]
 completion-trigger-len = 1

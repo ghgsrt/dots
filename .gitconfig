@@ -1,7 +1,7 @@
 [user]
-    name = "Sainnhe Park"
-    email = i@sainnhe.dev
-    signingkey = 176E0BEC3A702FEBCCDA0A185A24ED790A08C8A3
+    name = "ghgsrt"
+    email = ajbosco00@gmail.com
+    signingkey = 1AFC04433BA0831F9115A21B811DCBF7C5436E04
 [core]
     editor = vim
     excludesFile = ~/.gitignore_global
