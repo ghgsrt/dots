@@ -329,12 +329,12 @@ alias vimprivate="vim -u DEFAULTS --cmd 'set noswapfile' --cmd 'set nobackup' --
 alias vimdefault="vim -u DEFAULTS"
 alias nnn='PAGER= nnn'
 alias pager="${PAGER}"
-alias help='~/repo/dotfiles/scripts/help.sh'
-alias colorscheme='~/repo/dotfiles/scripts/colorscheme.sh'
-alias tmuxinit='~/repo/dotfiles/scripts/tmuxinit.sh'
+alias help='~/scripts/help.sh'
+alias colorscheme='~/scripts/colorscheme.sh'
+alias tmuxinit='~/scripts/tmuxinit.sh'
 alias px='proxychains4 -q'
-alias arch-clean='~/repo/dotfiles/scripts/arch/clean.sh'
-alias javaswitch='~/repo/dotfiles/scripts/javaswitch.sh'
+alias arch-clean='~/scripts/arch/clean.sh'
+alias javaswitch='~/scripts/javaswitch.sh'
 alias gencomp-help='gencomp'
 alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
