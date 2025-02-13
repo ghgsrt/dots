@@ -301,6 +301,13 @@ should_sudo() {
 # {{{
 alias git='should_sudo git'
 
+alias gpghelp='echo gpggen -> gpglist -> pass the string after the first / in sec to gpgexport; second line in sec is signing key for .gitconfig'
+alias gpggen='gpg --full-generate-key --pinentry-mode loopback'
+alias gpglist='gpg --list-secret-keys --keyid-format=long'
+alias gpgexport='gpg --armor --export'
+
+alias tmuxinstall='$BOS_HOME_PROFILE/share/.tmux/plugins/tpm/scripts/install_plugins.sh'
+
 alias ls='should_sudo ls -ACFL --color=auto'
 alias ll='ls -l'  # list format
 alias lt='ls -t'  # sort by time
@@ -362,7 +369,7 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 PURE_POWER_MODE=modern
-zinit ice atload"source $HOME/.zsh-theme/gruvbox-material-dark.zsh"
+zinit ice atload"source $HOME/.zsh-theme/.p10k.zsh"
 zinit light romkatv/powerlevel10k
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
