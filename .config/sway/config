@@ -60,7 +60,7 @@ corner_radius 9
 # class                 border    background  text      indicator  child_border
 client.focused          #e78a4e   #e78a4e     #d4be98   #e78a4e    #e78a4e
 client.focused_inactive #e78a4e   #e78a4e     #d4be98   #e78a4e    #e78a4e
-client.unfocused       #1B1D1E   #1B1D1E     #928374   #1B1D1E    #1B1D1E
+client.unfocused       #1B1D1E00   #1B1D1E     #928374   #1B1D1E    #1B1D1E
 client.urgent          #ea6962   #ea6962     #cfdfd5   #93423d    #93423d
 client.placeholder     #000000   #0c0c0c     #cfdfd5   #000000    #0c0c0c
 

@@ -134,7 +134,7 @@
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
     # cpu_arch              # CPU architecture
-    time                    # current time
+    #time                    # current time
     # =========================[ Line #2 ]=========================
     newline
     # ip                    # ip address and bandwidth usage for a specified network interface
@@ -217,13 +217,13 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
-  if [ $DISTRO = "guix" ]; then
   	typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=$(_color 003 208 '#ff9008')
-  elif [ $DISTRO = "nixos" ]; then
-  	typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=$(_color 004 74 '#7EBAE4')
-  else
-  	typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=
-  fi
+#   if [ $DISTRO = "guix" ]; then
+#   elif [ $DISTRO = "nixos" ]; then
+#   	typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=$(_color 004 74 '#7EBAE4')
+#   else
+#   	typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=
+#   fi
   # Custom icon.
   # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
 
