@@ -44,13 +44,13 @@ for_window [app_id="org.gnome.Calculator"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="org.jointhefreeworld.metainfog"] floating enable
 
-## THESE ARE SWAYFX SETTINGS !!!
 # Visual Settings
 default_border pixel 1
 gaps inner 8
 gaps outer 0
-#corner_radius 12
-#shadows enable
+## THESE ARE SWAYFX SETTINGS !!!
+corner_radius 12
+shadows enable
 #blur enable
 #default_dim_inactive 0.2
 #dim_inactive_colors.unfocused #000000FF
@@ -58,10 +58,10 @@ gaps outer 0
 
 # Window Colors
 # class                 border    background  text      indicator  child_border
-client.focused          #2B5B77   #2B5B77     #FFFFFF   #2B5B77    #2B5B77
-client.focused_inactive #2B5B77   #2B5B77     #FFFFFF   #2B5B77    #2B5B77
-client.unfocused       #1B1D1E   #1B1D1E     #808f80   #1B1D1E    #1B1D1E
-client.urgent          #b02930   #b02930     #cfdfd5   #900000    #900000
+client.focused          #e78a4e   #e78a4e     #d4be98   #e78a4e    #e78a4e
+client.focused_inactive #e78a4e   #e78a4e     #d4be98   #e78a4e    #e78a4e
+client.unfocused       #1B1D1E   #1B1D1E     #928374   #1B1D1E    #1B1D1E
+client.urgent          #ea6962   #ea6962     #cfdfd5   #93423d    #93423d
 client.placeholder     #000000   #0c0c0c     #cfdfd5   #000000    #0c0c0c
 
 # Keybindings
