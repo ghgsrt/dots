@@ -1,12 +1,13 @@
 [user]
     name = "ghgsrt"
     email = ajbosco00@gmail.com
-    signingkey = 1AFC04433BA0831F9115A21B811DCBF7C5436E04
+#    signingkey = AD9C47F3B62968FBBC2F4692B8363658C385EA25
+#1AFC04433BA0831F9115A21B811DCBF7C5436E04
 [core]
     editor = vim
     excludesFile = ~/.gitignore_global
-[commit]
-    gpgsign = true
+#[commit]
+#    gpgsign = true
 [diff]
     tool = vim_diff
 [difftool]
