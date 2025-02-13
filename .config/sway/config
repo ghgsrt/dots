@@ -49,8 +49,8 @@ default_border pixel 1
 gaps inner 8
 gaps outer 0
 ## THESE ARE SWAYFX SETTINGS !!!
-corner_radius 12
-shadows enable
+corner_radius 9
+#shadows enable
 #blur enable
 #default_dim_inactive 0.2
 #dim_inactive_colors.unfocused #000000FF
