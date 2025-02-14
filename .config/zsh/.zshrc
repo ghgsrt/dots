@@ -338,12 +338,12 @@ alias vimprivate="vim -u DEFAULTS --cmd 'set noswapfile' --cmd 'set nobackup' --
 alias vimdefault="vim -u DEFAULTS"
 alias nnn='PAGER= nnn'
 alias pager="${PAGER}"
-alias help='~/scripts/help.sh'
-alias colorscheme='~/scripts/colorscheme.sh'
-alias tmuxinit='~/scripts/tmuxinit.sh'
+alias help='$DOTFILES_SCRIPTS_DIR/help.sh'
+alias colorscheme='$DOTFILES_SCRIPTS_DIR/colorscheme.sh'
+alias tmuxinit='$DOTFILES_SCRIPTS_DIR/tmuxinit.sh'
 alias px='proxychains4 -q'
-alias arch-clean='~/scripts/arch/clean.sh'
-alias javaswitch='~/scripts/javaswitch.sh'
+alias arch-clean='$DOTFILES_SCRIPTS_DIR/arch/clean.sh'
+alias javaswitch='$DOTFILES_SCRIPTS_DIR/javaswitch.sh'
 alias gencomp-help='gencomp'
 alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
@@ -476,72 +476,3 @@ export PB_DOMAIN="share.sainnhe.dev"
 # vim: set fdm=marker fmr={{{,}}}:
 
 
-alias srec='echo Error: your current distro does not support reconfiguration'
-alias hrec='echo Error: your current distro does not support reconfiguration'
-
-srec_guix() {
-	if [ -z "$1" ]; then
-        echo "srec: using current system '$SYSTEM'"
-    fi
-    should_sudo guix system -L $BOS_CONFIG_DIR reconfigure $BOS_CONFIG_DIR/system/${1-$SYSTEM}.scm
-}
-hrec_guix() {
-	if [ -z "$1" ]; then
-		echo "hrec: using current home '$BOS_HOME_NAME'"
-	fi
-	#! DO NOT SUDO ON HOME RECONFIGURES
-	guix home -L $BOS_CONFIG_DIR reconfigure $BOS_CONFIG_DIR/home/${1-$BOS_HOME_NAME}.scm
-}
-
-if [ "$BOS_HOME_TYPE" = "guix" ]; then
-	alias hrec='hrec_guix'
-	alias hdesc='home describe'
-	alias home='guix home'
-fi
-
-if [ "$DISTRO" = "guix" ]; then
-	alias srec='srec_guix'
-
-	alias pull='should_sudo guix pull'
-	alias herd='should_sudo herd'
-	alias sdesc='system describe'
-
-	alias package='guix package'
-	alias system='guix system'
-
-	alias update='pull && should_sudo package -u'
-	alias install='package -i'
-	alias remove='package -r'
-	alias search='package -s'
-	alias info='package -I'
-	alias list='package -p'
-fi
-
-srec_nix() {
-	if [ -z "$1" ]; then
-		echo "srec: using current system '$SYSTEM'"
-	fi
-	cd $BOS_CONFIG_DIR
-	should_sudo nixos-rebuild switch --flake .#${1-$SYSTEM} --impure
-	cd -
-}
-hrec_nix() {
-	if [ -z "$1" ]; then
-		echo "hrec: using current home '$BOS_HOME_NAME'"
-	fi
-	cd $BOS_CONFIG_DIR
-	#! DO NOT SUDO ON HOME RECONFIGURES
-	home-manager switch --flake .#${1-$BOS_HOME_NAME}-${USER} --impure
-	cd -
-}
-
-if [ "$BOS_HOME_TYPE" = "nix" ]; then
-	alias hrec='hrec_nix'
-	alias home='home-manager'
-fi
-
-if [ "$DISTRO" = "nix" ]; then
-	alias srec='srec_nix'
-
-	alias upflake='nix flake update'
-fi
