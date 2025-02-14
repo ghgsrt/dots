@@ -1,6 +1,8 @@
 # {{{Settings
 # zmodload zsh/zprof
 # {{{env
+export ZLE_RPROMPT_INDENT=0
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/node_modules/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
