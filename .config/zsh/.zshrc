@@ -338,12 +338,12 @@ alias vimprivate="vim -u DEFAULTS --cmd 'set noswapfile' --cmd 'set nobackup' --
 alias vimdefault="vim -u DEFAULTS"
 alias nnn='PAGER= nnn'
 alias pager="${PAGER}"
-alias help='$DOTFILES_SCRIPTS_DIR/help.sh'
-alias colorscheme='$DOTFILES_SCRIPTS_DIR/colorscheme.sh'
-alias tmuxinit='$DOTFILES_SCRIPTS_DIR/tmuxinit.sh'
+alias help='$BOS_DOTFILES_DIR/scripts/help.sh'
+alias colorscheme='$BOS_DOTFILES_DIR/scripts/colorscheme.sh'
+alias tmuxinit='$BOS_DOTFILES_DIR/scripts/tmuxinit.sh'
 alias px='proxychains4 -q'
-alias arch-clean='$DOTFILES_SCRIPTS_DIR/arch/clean.sh'
-alias javaswitch='$DOTFILES_SCRIPTS_DIR/javaswitch.sh'
+alias arch-clean='$BOS_DOTFILES_DIR/scripts/arch/clean.sh'
+alias javaswitch='$BOS_DOTFILES_DIR/scripts/javaswitch.sh'
 alias gencomp-help='gencomp'
 alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
 alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
@@ -361,6 +361,9 @@ if [[ "$(uname)" == "Linux" ]]; then
 else
     alias manzh='man -M /opt/local/share/man/zh_CN'
 fi
+
+#01e9ff
+#1e90ff
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
