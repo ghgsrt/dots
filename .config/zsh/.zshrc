@@ -357,18 +357,16 @@ elif [ -x "$(command -v exa)" ]; then
 fi
 if [[ "$(uname)" == "Linux" ]]; then
     alias open="xdg-open"
-    alias manzh='man -L zh_CN.UTF-8'
-else
-    alias manzh='man -M /opt/local/share/man/zh_CN'
 fi
 
-#01e9ff
-#1e90ff
 # }}}
 # {{{Plugins
 # https://github.com/zdharma-continuum/zinit
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 # https://github.com/sorin-ionescu/prezto
+
+source <(COMPLETE=zsh tms)
+
 [ ! -f "$HOME/.zinit/bin/zinit.zsh" ] && mkdir -p ~/.zinit && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
