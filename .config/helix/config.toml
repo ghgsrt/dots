@@ -26,3 +26,4 @@ g = { a = "code_action" }
 [keys.insert]
 "A-x" = "normal_mode"
 
+#TODO  setup sessionizer keybinds;; get vim statusbar;; get repos on ssh stuff (reclone);; update p10k to only show user;; learn the billion things i've added;; qutebrowser on laptop;; make sure everything good on laptop;; reconcile sway keybinds as necessary

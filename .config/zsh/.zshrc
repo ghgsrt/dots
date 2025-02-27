@@ -297,16 +297,23 @@ should_sudo() {
     if groups "$USER" | grep -q "\bwheel\b"; then
         sudo "$@"
     fi
-} # }}}
+} 
+
+gpg_export() {
+	gpg --export-secret-keys -a "$1" > "$2".asc
+}
+# }}}
 # }}}
 
 # {{{
 alias git='should_sudo git'
 
 alias gpghelp='echo gpggen -> gpglist -> pass the string after the first / in sec to gpgexport; second line in sec is signing key for .gitconfig'
-alias gpggen='gpg --full-generate-key --pinentry-mode loopback'
+alias gpggen='gpg --full-generate-key'
 alias gpglist='gpg --list-secret-keys --keyid-format=long'
 alias gpgexport='gpg --armor --export'
+
+alias ssh_new_key='ssh-keygen -t ed25519 -C "$BOS_EMAIL"'
 
 alias tmuxinstall='$BOS_HOME_PROFILE/share/.tmux/plugins/tpm/scripts/install_plugins.sh'
 
