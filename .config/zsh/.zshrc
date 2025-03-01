@@ -372,7 +372,7 @@ fi
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
 # https://github.com/sorin-ionescu/prezto
 
-source <(COMPLETE=zsh tms)
+#. <(COMPLETE=zsh tms)
 
 [ ! -f "$HOME/.zinit/bin/zinit.zsh" ] && mkdir -p ~/.zinit && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 source "$HOME/.zinit/bin/zinit.zsh"

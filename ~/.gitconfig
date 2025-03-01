@@ -1,7 +1,7 @@
 [user]
     name = "ghgsrt"
     email = ajbosco00@gmail.com
-    signingkey = 1A38AE4F3A9BFFD6
+    signingkey = 39F7DC8BDA19C427
 [core]
     editor = vim
     excludesFile = ~/.gitignore_global
