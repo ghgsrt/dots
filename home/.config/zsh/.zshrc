@@ -306,12 +306,14 @@ gpg_export() {
 # }}}
 
 # {{{
-alias git='should_sudo git'
+#alias git='should_sudo git'
 
 alias gpghelp='echo gpggen -> gpglist -> pass the string after the first / in sec to gpgexport; second line in sec is signing key for .gitconfig'
 alias gpggen='gpg --full-generate-key'
 alias gpglist='gpg --list-secret-keys --keyid-format=long'
 alias gpgexport='gpg --armor --export'
+
+alias fuckgpg='echo UPDATESTARTUPTTY | gpg-connect-agent'
 
 alias ssh_new_key='ssh-keygen -t ed25519 -C "$BOS_EMAIL"'
 
