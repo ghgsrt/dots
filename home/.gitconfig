@@ -3,7 +3,7 @@
     email = ajbosco00@gmail.com
     signingkey = AE35516048EEFBFB
 [core]
-    editor = vim
+    editor = nvim
     excludesFile = ~/.gitignore_global
 [commit]
     gpgsign = true
@@ -12,12 +12,12 @@
 [difftool]
     prompt = false
 [difftool "vim_diff"]
-    cmd = "vim -d \"$LOCAL\" \"$REMOTE\""
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
     tool = vim_merge
     conflictStyle = diff3
 [mergetool "vim_merge"]
-    cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
 [pull]
     rebase = true
