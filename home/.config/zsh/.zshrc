@@ -319,8 +319,9 @@ alias ssh_new_key='ssh-keygen -t ed25519 -C "$BOS_EMAIL"'
 
 alias tmuxinstall='$BOS_HOME_PROFILE/share/.tmux/plugins/tpm/scripts/install_plugins.sh'
 
-alias ls='should_sudo ls -ACFL --color=auto'
+alias ls='should_sudo ls -ACF --color=auto'
 alias ll='ls -l'  # list format
+alias lL='ls -Ll' # list format, follow symlinks
 alias lt='ls -t'  # sort by time
 alias la='ls -u'  # sort by last access
 alias lss='ls -s' # show size
