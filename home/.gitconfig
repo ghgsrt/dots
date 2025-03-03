@@ -5,6 +5,10 @@
 [core]
     editor = nvim
     excludesFile = ~/.gitignore_global
+[submodule]
+    remote = true
+    recurse = true
+    stickyRecursiveClone = true
 [commit]
     gpgsign = true
 [diff]
@@ -98,3 +102,4 @@
 ; ; Need to set gpg program on windows
 ; [gpg]
 ;     program = "C:/Users/sainnhe/scoop/apps/gnupg/current/bin/gpg.exe"
+
