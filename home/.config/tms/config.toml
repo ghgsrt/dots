@@ -1,15 +1,16 @@
 search_submodules = true
 recursive_submodules = true
 
-switch_filter_unknown = false #! avoids an unnecessary additional call to find_repos on every switch
+switch_filter_unknown = false #! prevents unnecessary additional call to find_repos() every time you try to switch
 
 session_sort_order = "Alphabetical"
 
 excluded_dirs = []
+bookmarks = ["/root"]
 
 [[search_dirs]]
 path = "/bos"
-depth = 1 
+depth = 4
 
 [[search_dirs]]
 path = "/root/personal"
@@ -20,9 +21,7 @@ path = "/root/work"
 depth = 3
 
 [picker_colors]
-border_color = "#e78a4e"
-info_color = "#7daea3"
-prompt_color = "#a9b665"
-#highlight_color = "#d8a657"
-highlight_color = "#a89984"
-
+highlight_color = "#A89984"
+border_color = "#E78A4E"
+info_color = "#7DAEA3"
+prompt_color = "#A9B665"
