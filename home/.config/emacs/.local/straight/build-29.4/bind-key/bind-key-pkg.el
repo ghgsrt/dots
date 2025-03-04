@@ -1,1 +1,0 @@
-/root/.config/emacs/.local/straight/repos/bind-key/bind-key-pkg.el
