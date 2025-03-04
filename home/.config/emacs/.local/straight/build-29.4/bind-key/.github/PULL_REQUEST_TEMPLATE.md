@@ -1,0 +1,1 @@
+/root/.config/emacs/.local/straight/repos/bind-key/.github/PULL_REQUEST_TEMPLATE.md
