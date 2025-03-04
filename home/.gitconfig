@@ -5,6 +5,7 @@
 [core]
     editor = nvim
     excludesFile = ~/.gitignore_global
+	autocrlf = false
 [commit]
     gpgsign = true
 [diff]
