@@ -8,6 +8,11 @@
 	autocrlf = false
 [commit]
     gpgsign = true
+[sendemail]
+	smtpServer = smtp.forwardemail.net
+	smtpUser = me@alexbos.co
+	smtpServerPort = 587
+	smtpEncryption = tls
 [diff]
     tool = vim_diff
 [difftool]
