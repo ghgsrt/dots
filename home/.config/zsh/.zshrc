@@ -30,7 +30,7 @@ fi
 if test -d "$HOME/.zsh_envs.d/"; then
     for _env in "$HOME/.zsh_envs.d/"*; do
         test -r "$_env" && . "$_env"
-    done
+done
     unset _env
 fi
 # }}}
@@ -38,7 +38,7 @@ fi
 set +o nonotify
 umask 077
 setopt hist_save_no_dups hist_ignore_dups       # eliminate duplicate entries in history
-setopt correctall                               # enable auto correction
+#setopt correctall                               # enable auto correction
 setopt autopushd pushdignoredups                # auto push dir into stack and and don’t duplicate them
 bindkey -e                                      # emacs mode
 # }}}
@@ -71,11 +71,11 @@ zcomp_init () {
 
     # Case-insensitive (all), partial-word, and then substring completion.
     if zstyle -t ':prezto:module:completion:*' case-sensitive; then
-      zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-      setopt CASE_GLOB
+        zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+        setopt CASE_GLOB
     else
-      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-      unsetopt CASE_GLOB
+        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+        unsetopt CASE_GLOB
     fi
 
     # Group matches and describe.
@@ -130,21 +130,21 @@ zcomp_init () {
     # */etc/hosts* which might be uninteresting.
     zstyle -a ':prezto:module:completion:*:hosts' etc-host-ignores '_etc_host_ignores'
 
-zstyle -e ':completion:*:hosts' hosts 'reply=(
-      ${=${=${=${${(f)"$(cat {/etc/ssh/ssh_,~/.ssh/}known_hosts(|2)(N) 2> /dev/null)"}%%[#| ]*}//\]:[0-9]*/ }//,/ }//\[/ }
-      ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2> /dev/null))"}%%(\#${_etc_host_ignores:+|${(j:|:)~_etc_host_ignores}})*}
-      ${=${${${${(@M)${(f)"$(cat ~/.ssh/config 2> /dev/null)"}:#Host *}#Host }:#*\**}:#*\?*}}
-    )'
+    zstyle -e ':completion:*:hosts' hosts 'reply=(
+    ${=${=${=${${(f)"$(cat {/etc/ssh/ssh_,~/.ssh/}known_hosts(|2)(N) 2> /dev/null)"}%%[#| ]*}//\]:[0-9]*/ }//,/ }//\[/ }
+    ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2> /dev/null))"}%%(\#${_etc_host_ignores:+|${(j:|:)~_etc_host_ignores}})*}
+        ${=${${${${(@M)${(f)"$(cat ~/.ssh/config 2> /dev/null)"}:#Host *}#Host }:#*\**}:#*\?*}}
+            )'
 
     # Don't complete uninteresting users...
     zstyle ':completion:*:*:*:users' ignored-patterns \
-      adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
-      dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
-      hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
-      mailman mailnull mldonkey mysql nagios \
-      named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
-      operator pcap postfix postgres privoxy pulse pvm quagga radvd \
-      rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
+        adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
+        dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
+        hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
+        mailman mailnull mldonkey mysql nagios \
+        named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
+        operator pcap postfix postgres privoxy pulse pvm quagga radvd \
+        rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
 
     # ... unless we really want to.
     zstyle '*' single-ignored show
@@ -178,8 +178,8 @@ zstyle -e ':completion:*:hosts' hosts 'reply=(
 
     # Mutt
     if [[ -s "$HOME/.mutt/aliases" ]]; then
-      zstyle ':completion:*:*:mutt:*' menu yes select
-      zstyle ':completion:*:mutt:*' users ${${${(f)"$(<"$HOME/.mutt/aliases")"}#alias[[:space:]]}%%[[:space:]]*}
+        zstyle ':completion:*:*:mutt:*' menu yes select
+        zstyle ':completion:*:mutt:*' users ${${${(f)"$(<"$HOME/.mutt/aliases")"}#alias[[:space:]]}%%[[:space:]]*}
     fi
 
     # SSH/SCP/RSYNC
@@ -192,9 +192,9 @@ zstyle -e ':completion:*:hosts' hosts 'reply=(
 }
 # }}}
 # {{{rtv
-export RTV_EDITOR="vim"
-export RTV_BROWSER="w3m"
-export RTV_URLVIEWER="urlscan"
+#export RTV_EDITOR="vim"
+#export RTV_BROWSER="w3m"
+#export RTV_URLVIEWER="urlscan"
 # }}}
 # }}}
 # {{{Functions
@@ -212,102 +212,100 @@ cdf() {
         -o -type d -print 2> /dev/null | "$FuzzyFinder") &&
         cd "$dir"
     }
-# include hidden dirs
-cdf-all() {
+    # include hidden dirs
+    cdf-all() {
     local dir
     dir=$(find ${1:-.} -type d 2> /dev/null | grep -v ".git/" | "$FuzzyFinder") && cd "$dir"
 }
 # job to fore
 job-fore() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
-    fg %"$JOB_ID"
+JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+fg %"$JOB_ID"
 }
 
 # job to back
 job-back() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
-    bg %"$JOB_ID"
+JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+bg %"$JOB_ID"
 }
 
 # job kill
 job-kill() {
-    JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
-    kill %"$JOB_ID"
+JOB_ID=$(jobs | grep "[[[:digit:]]*]" | "$FuzzyFinder" | grep -o "[[[:digit:]]*]" | grep -o "[[:digit:]]*")
+kill %"$JOB_ID"
 }
 # }}}
 install-fzf() { # {{{
-    _architecture=""
-    case "$(uname -m)" in
-      i386)     _architecture="x86" ;;
-      i686)     _architecture="x86" ;;
-      x86_64)   _architecture="amd64" ;;
-      *)        _architecture="$(uname -m)" ;;
-    esac
-    _download_url=$(
-    curl -sL https://api.github.com/repos/junegunn/fzf/releases/latest |\
-        grep -e 'https://github.com.*zip' -e 'https://github.com.*tar.gz' |\
-        sed -e 's/.*https/https/' -e 's/".*$//' |\
-        grep -i "$(uname)" |\
-        grep "${_architecture}"
-    )
-    mkdir -p ~/.local/bin
-    if command -v proxychains4 &> /dev/null; then
-        proxychains4 -q curl -L "${_download_url}" |\
-            tar zxv -C ~/.local/bin
-    else
-        curl -L "${_download_url}" |\
-            tar zxv -C ~/.local/bin
-    fi
-    chmod a+x ~/.local/bin/fzf
-    unset _download_url _architecture
+_architecture=""
+case "$(uname -m)" in
+    i386)     _architecture="x86" ;;
+    i686)     _architecture="x86" ;;
+    x86_64)   _architecture="amd64" ;;
+    *)        _architecture="$(uname -m)" ;;
+esac
+_download_url=$(
+curl -sL https://api.github.com/repos/junegunn/fzf/releases/latest |\
+    grep -e 'https://github.com.*zip' -e 'https://github.com.*tar.gz' |\
+    sed -e 's/.*https/https/' -e 's/".*$//' |\
+    grep -i "$(uname)" |\
+    grep "${_architecture}"
+)
+mkdir -p ~/.local/bin
+if command -v proxychains4 &> /dev/null; then
+    proxychains4 -q curl -L "${_download_url}" |\
+        tar zxv -C ~/.local/bin
+        else
+            curl -L "${_download_url}" |\
+                tar zxv -C ~/.local/bin
+fi
+chmod a+x ~/.local/bin/fzf
+unset _download_url _architecture
 } # }}}
 uninstall-fzf() { # {{{
-    rm -f ~/.local/bin/fzf
+rm -f ~/.local/bin/fzf
 } # }}}
 install-bash-it() { # {{{
-    git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-    bash ~/.bash_it/install.sh
+git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+bash ~/.bash_it/install.sh
 } # }}}
 cargo-update() { # {{{
-    if [ -x "$(command -v cargo-install-update)" ]; then
-        cargo install-update -a
-    else
-        cargo install $(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
-    fi
+if [ -x "$(command -v cargo-install-update)" ]; then
+    cargo install-update -a
+else
+    cargo install $(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
+fi
 } # }}}
 compeval() { # {{{
     [ -x "$(command -v pnpm)" ] && source <(pnpm completion zsh) || echo "pnpm not found"
     [ -x "$(command -v ng)" ] && source <(ng completion script) || echo "ng not found"
 } # }}}
-pacclean() { # {{{
-    sudo paccache -rf -k 0
-    pacman -Qdtq | sudo pacman -Rns -
-    /usr/bin/ls -d -1 "$HOME/.cache/pikaur/build/"* | grep -v '.*git\>' | xargs sudo rm -rf
-    /usr/bin/ls -d -1 "$HOME/.local/share/pikaur/aur_repos/"* | grep -v '.*git\>' | xargs sudo rm -rf
-    rm -rf ~/.cache/pikaur/pkg
-    sync
-}
+#pacclean() { # {{{
+#    sudo paccache -rf -k 0
+#    pacman -Qdtq | sudo pacman -Rns -
+#    /usr/bin/ls -d -1 "$HOME/.cache/pikaur/build/"* | grep -v '.*git\>' | xargs sudo rm -rf
+#    /usr/bin/ls -d -1 "$HOME/.local/share/pikaur/aur_repos/"* | grep -v '.*git\>' | xargs sudo rm -rf
+#    rm -rf ~/.cache/pikaur/pkg
+#    sync
+#}
 should_sudo() {
-	if [ "$USER" = "root" ]; then
+    if [ "$USER" = "root" ]; then
         $@
-		return
+        return
     fi
 
-	# Check if user is in wheel group
-    if groups "$USER" | grep -q "\bwheel\b"; then
-        sudo "$@"
-    fi
-} 
+        # Check if user is in wheel group
+        if groups "$USER" | grep -q "\bwheel\b"; then
+            sudo "$@"
+        fi
+    } 
 
-gpg_export() {
-	gpg --export-secret-keys -a "$1" > "$2".asc
-}
-# }}}
-# }}}
+    gpg_export() {
+        gpg --export-secret-keys -a "$1" > "$2".asc
+    }
+    # }}}
+    # }}}
 
 # {{{
-#alias git='should_sudo git'
-
 alias gpghelp='echo gpggen -> gpglist -> pass the string after the first / in sec to gpgexport; second line in sec is signing key for .gitconfig'
 alias gpggen='gpg --full-generate-key'
 alias gpglist='gpg --list-secret-keys --keyid-format=long'
@@ -319,11 +317,14 @@ alias ssh_new_key='ssh-keygen -t ed25519 -C "$BOS_EMAIL"'
 
 alias tmuxinstall='$BOS_HOME_PROFILE/share/.tmux/plugins/tpm/scripts/install_plugins.sh'
 
-alias ls='should_sudo ls -ACF --color=auto'
+alias ls='should_sudo ls -CF --color=auto'
+alias la='ls -A'  # show all
 alias ll='ls -l'  # list format
-alias lL='ls -Ll' # list format, follow symlinks
+alias lla='la -l'  # list format (all)
+alias lL='ll -L' # list format, follow symlinks
+alias lLa='lla -L' # list format, follow symlinks (all)
 alias lt='ls -t'  # sort by time
-alias la='ls -u'  # sort by last access
+alias lu='ls -u'  # sort by last access
 alias lss='ls -s' # show size
 
 alias grep='grep --color=auto'
@@ -337,26 +338,17 @@ alias h='history'
 alias du='du -sh'
 alias df='df -h'
 alias cp='cp -p'
+alias mkdir='mkdir -p'
 alias cdh='pushd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
 alias cdh-ls='dirs -vl | "$FuzzyFinder"'
 alias cdh-clean='popd +$( dirs -v | "$FuzzyFinder" | grep -o "[[:digit:]]") > /dev/null'
 alias cdh-clean-all='dirs -c'
 alias cdr='cd $(git rev-parse --show-toplevel)'
-alias job-='fg %-'
-alias job-ls='jobs -l'
-alias vimprivate="vim -u DEFAULTS --cmd 'set noswapfile' --cmd 'set nobackup' --cmd 'set noundofile' --cmd 'set viminfofile=NONE' --cmd 'set viminfo=' --cmd 'set nomodeline' --cmd 'set noexrc' --noplugin"
-alias vimdefault="vim -u DEFAULTS"
 alias nnn='PAGER= nnn'
 alias pager="${PAGER}"
 alias help='$BOS_DOTFILES_DIR/scripts/help.sh'
-alias colorscheme='$BOS_DOTFILES_DIR/scripts/colorscheme.sh'
 alias tmuxinit='$BOS_DOTFILES_DIR/scripts/tmuxinit.sh'
-alias px='proxychains4 -q'
-alias arch-clean='$BOS_DOTFILES_DIR/scripts/arch/clean.sh'
-alias javaswitch='$BOS_DOTFILES_DIR/scripts/javaswitch.sh'
 alias gencomp-help='gencomp'
-alias proxyenv='export HTTP_PROXY=http://127.0.0.1:17080 && export HTTPS_PROXY=http://127.0.0.1:17080 && export http_proxy=http://127.0.0.1:17080 && export https_proxy=http://127.0.0.1:17080'
-alias mkinitcpio-surface='sudo mkinitcpio -p linux-surface'
 alias rga="rg --hidden --ignore-vcs '--glob=!.git/*'"
 if [ -x "$(command -v lsd)" ]; then
     alias ls='lsd'
@@ -366,7 +358,7 @@ elif [ -x "$(command -v exa)" ]; then
     alias tree='exa --tree'
 fi
 if [[ "$(uname)" == "Linux" ]]; then
-    alias open="xdg-open"
+    alias open="xdg-open".
 fi
 
 # }}}
@@ -393,48 +385,48 @@ zinit ice wait'1' lucid depth=1; zinit light hlissner/zsh-autopair
 zinit ice wait'0' lucid depth=1 \
     atload"zcomp_init" \
     atpull"zinit cclear && zinit creinstall sainnhe/zsh-completions"
-zinit light sainnhe/zsh-completions
-zinit snippet "https://testingcf.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/plugins/dotenv/dotenv.plugin.zsh"
-zinit ice pick"pfetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/pfetch@master/pfetch"
-zinit ice pick"neofetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/neofetch@master/neofetch"
-zinit ice pick"sysz" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/joehillen/sysz@master/sysz"
-zinit ice mv"httpstat.sh -> httpstat" \
+    zinit light sainnhe/zsh-completions
+    zinit snippet "https://testingcf.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/plugins/dotenv/dotenv.plugin.zsh"
+    zinit ice pick"pfetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/pfetch@master/pfetch"
+    zinit ice pick"neofetch" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/dylanaraps/neofetch@master/neofetch"
+    zinit ice pick"sysz" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/joehillen/sysz@master/sysz"
+    zinit ice mv"httpstat.sh -> httpstat" \
         pick"httpstat" as"program"
-zinit snippet "https://testingcf.jsdelivr.net/gh/b4b4r07/httpstat@master/httpstat.sh"
-zinit ice wait'1' lucid ver=v0.15.0 \
-    as"program" \
-    pick"bin/asdf"
-zinit light asdf-vm/asdf
-zinit ice wait'1' lucid depth=1 \
-    as"program" \
-    pick"bin/*" \
-    atload"export MANPATH=$HOME/.zinit/plugins/sunaku---dasht/man:$MANPATH && source etc/zsh/completions.zsh"
-zinit light sunaku/dasht
-zinit ice pick"pb" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/pb"
-zinit ice pick"_pb" as"completion"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/_pb"
-# {{{fast-syntax-highlighting
-FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
-# }}}
-# {{{fzf
-# $ fzf                 # fuzzy search files
-# Tab/Down/S-Tab/Up     # navigate
-# C-s                   # Select items
-# C-p                   # Toggle preview
-export FZF_DEFAULT_COMMAND='fd . --type=file --hidden'
-export FZF_DEFAULT_OPTS="
---multi
---height=50%
---layout=reverse
---prompt='❯ '
---pointer='-'
---marker='+'
---ansi
---tabstop=4
---color=dark
---color=hl:2:bold,fg+:4:bold,bg+:-1,hl+:2:bold,info:3:bold,border:0,prompt:2,pointer:5,marker:1,header:6
---bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
---separator=
-"
+            zinit snippet "https://testingcf.jsdelivr.net/gh/b4b4r07/httpstat@master/httpstat.sh"
+            zinit ice wait'1' lucid ver=v0.15.0 \
+                as"program" \
+                pick"bin/asdf"
+                            zinit light asdf-vm/asdf
+                            zinit ice wait'1' lucid depth=1 \
+                                as"program" \
+                                pick"bin/*" \
+                                atload"export MANPATH=$HOME/.zinit/plugins/sunaku---dasht/man:$MANPATH && source etc/zsh/completions.zsh"
+                                                            zinit light sunaku/dasht
+                                                            zinit ice pick"pb" as"program"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/pb"
+                                                            zinit ice pick"_pb" as"completion"; zinit snippet "https://testingcf.jsdelivr.net/gh/SharzyL/pastebin-worker@goshujin/scripts/_pb"
+                                                            # {{{fast-syntax-highlighting
+                                                            FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
+                                                            # }}}
+                                                            # {{{fzf
+                                                            # $ fzf                 # fuzzy search files
+                                                            # Tab/Down/S-Tab/Up     # navigate
+                                                            # C-s                   # Select items
+                                                            # C-p                   # Toggle preview
+                                                            export FZF_DEFAULT_COMMAND='fd . --type=file --hidden'
+                                                            export FZF_DEFAULT_OPTS="
+                                                            --multi
+                                                            --height=50%
+                                                            --layout=reverse
+                                                            --prompt='❯ '
+                                                            --pointer='-'
+                                                            --marker='+'
+                                                            --ansi
+                                                            --tabstop=4
+                                                            --color=dark
+                                                            --color=hl:2:bold,fg+:4:bold,bg+:-1,hl+:2:bold,info:3:bold,border:0,prompt:2,pointer:5,marker:1,header:6
+                                                            --bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
+                                                            --separator=
+                                                            "
 
 # C-f fzf-widgets
 # C-r history search
