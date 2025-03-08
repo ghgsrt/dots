@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:ghgsrt/k-nvim.git
+	branch = master
+	commit = 1858bd41b81bda8d18aca6db1ea3644b5b25df4c
+	parent = 75fe82651877c582480a123d1d0754282a4d859e
+	method = merge
+	cmdver = 0.4.9
